@@ -34,7 +34,7 @@ public:
     }
 
     // 使用动态规划计算斐波那契数列第n项
-    int fib(int n) {
+    int fib3(int n) {
         if (n <= 1) {
             return n;
         }
@@ -48,6 +48,21 @@ public:
         }
         
         return dp[n];
+    }
+
+    int fib(int n){
+        if (n <= 1){
+            return n;
+        }
+        int a = 0;
+        int b = 1;
+        int c = a + b;
+        for (int i = 2; i <= n; i++){
+            c = a + b;
+            a = b;
+            b = c;
+        }
+        return c;
     }
 
 };
