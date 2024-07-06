@@ -1,26 +1,18 @@
 class Solution {
 public:
-    string mostCommonWord(string paragraph, vector<string>& banned) {
-        for (auto &c: paragraph){
-            c = isalpha(c) ? tolower(c) : ' ';
-        }
-        stringstream ss(paragraph);
-        std::vector<std::string> words;
-        for (std::string w; ss >> w; ){
-            words.push_back(w);
-        }
-        for (const auto &e: banned){
-            words.erase(remove(begin(words), end(words), e), end(words));
-        }
-        auto max = 0L;
-        std::string res;
-        for (const auto &e: words){
-            auto count = std::count(cbegin(words), cend(words), e);
-            if (count > max){
-                max = std::max(max, count);
-                res = e;
-            }
-        }
-        return res;
+
+    // leetcode 819: Most Common Word
+    // https://leetcode.cn/problems/most-common-word/solutions/1424731/zui-chang-jian-de-dan-ci-by-leetcode-sol-mzjb/comments/1510279
+
+    std::string mostCommonWord(std::string paragraph, std::vector<std::string>& banned) {
+        for_each(begin(paragraph), end(paragraph),
+            [](auto &c) {c = isalpha(c) ? tolower(c) : ' ';});
+        std::stringstream para(paragraph);
+        std::unordered_set ban(banned.cbegin(), banned.cend());
+        std::unordered_map<std::string, size_t> freq;
+        for (std::string word; para >> word; ban.count(word) ? 0 : freq[word]++);
+        return max_element(cbegin(freq), cend(freq),
+            [](auto &a, auto &b) {return a.second < b.second;})->first;
     }
+
 };
