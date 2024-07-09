@@ -17,7 +17,7 @@ public:
                 return a.first < b.first && a.second == 1 && b.second == 1;
             });
         std::vector<std::string> v4;
-        for (const auto &e: v3){
+        for (auto &e: v3){
             v4.emplace_back(std::move(e.first));
         }
         return v4.size();
