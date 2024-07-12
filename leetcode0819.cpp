@@ -4,16 +4,15 @@ public:
     // leetcode 819: Most Common Word
     // https://leetcode.cn/problems/most-common-word/solutions/1424731/zui-chang-jian-de-dan-ci-by-leetcode-sol-mzjb/comments/1510279
 
-    std::string mostCommonWord(std::string paragraph, std::vector<std::string>& banned) {
-        transform(cbegin(paragraph), cend(paragraph), begin(paragraph),
-            [](auto &c) {return isalpha(c) ? tolower(c) : ' ';});
-        std::stringstream para(paragraph);
-        std::unordered_set ban(banned.cbegin(), banned.cend());
-        std::unordered_map<std::string, size_t> freq;
-        for (std::string word; para >> word; ban.count(word) ? 0 : freq[word]++);
-        std::priority_queue<std::pair<size_t, std::string>> pq;
-        for (const auto &p: freq){pq.emplace(p.second, p.first);}
-        return pq.top().second;
+    string mostCommonWord(string paragraph, vector<string>& banned) {
+        transform(paragraph.cbegin(), paragraph.cend(), paragraph.begin(), 
+            [](auto& i) { return isalpha(i) ? tolower(i) : ' '; });
+        stringstream ss(paragraph);
+        unordered_set ban(banned.cbegin(), banned.cend());
+        unordered_map<string, size_t> dict;
+
+        for (string tmp; ss >> tmp; ban.count(tmp) ? 0 : dict[tmp]++);
+        return max_element(dict.cbegin(), dict.cend(), [](auto& a, auto& b) {return a.second < b.second; })->first;
     }
 
 };
