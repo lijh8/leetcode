@@ -5,7 +5,7 @@ public:
     // https://leetcode.cn/problems/most-common-word/solutions/1424731/zui-chang-jian-de-dan-ci-by-leetcode-sol-mzjb/comments/1510279
 
     string mostCommonWord(string paragraph, vector<string>& banned) {
-        transform(paragraph.cbegin(), paragraph.cend(), paragraph.begin(), 
+        transform(paragraph.cbegin(), paragraph.cend(), paragraph.begin(),
             [](auto& i) { return isalpha(i) ? tolower(i) : ' '; });
         stringstream ss(paragraph);
         unordered_set ban(banned.cbegin(), banned.cend());
