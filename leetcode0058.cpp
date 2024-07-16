@@ -13,7 +13,7 @@ public:
         auto b = s.find_last_of(' ', a);
         return a - b;
     }
-    
+
     // lengthOfLastWord("hello!") // end(s) - 0 == 6
     int lengthOfLastWord(std::string s) {
         auto needle = ' ';
