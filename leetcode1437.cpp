@@ -2,17 +2,15 @@ class Solution {
 public:
     bool kLengthApart(std::vector<int>& nums, int k) {
         auto min = LONG_MAX;
-        auto first = begin(nums);
-        auto last = begin(nums);
-        for (auto i = begin(nums); i != end(nums); ){
-            i = first = find(i, end(nums), 1);
-            if (first != end(nums)){
-                i = last = find(first + 1, end(nums), 1);
+        auto last = end(nums);
+        for (auto it = begin(nums); it != end(nums); ){
+            it = find(it, end(nums), 1);
+            if (it != end(nums)){
                 if (last != end(nums)){
-                    min = std::min(min, last - first - 1);
+                    min = std::min(min, it - last - 1);
                 }
-            } else {
-                min = nums.size();
+                last = it;
+                ++it;
             }
         }
         return min >= k;
