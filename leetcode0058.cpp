@@ -1,3 +1,4 @@
+// c++
 class Solution {
 public:
     int lengthOfLastWord3(string s) {
@@ -24,3 +25,16 @@ public:
         return b - a;
     }
 };
+
+// rust
+impl Solution {
+    pub fn length_of_last_word(s: String) -> i32 {
+        let s = s.trim();
+        if s.is_empty() {
+            return 0;
+        }
+        let a = s.rfind(|c| c != ' ').unwrap() as i32;
+        let b = s[..a as usize].rfind(|c| c == ' ').unwrap_or(usize::MAX) as i32;
+        return a - b;
+    }
+}
