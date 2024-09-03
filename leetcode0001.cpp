@@ -1,8 +1,11 @@
 #include <vector>
 
-std::vector<int> twoSum(std::vector<int> &nums, int target) {
-  for (auto i = 0; i != nums.size() - 1; i++) {
-    for (auto j = i + 1; j != nums.size(); j++) {
+vector<int> twoSum(vector<int> &nums, int target) {
+  if (size(nums) == 0) {
+    return {};
+  }
+  for (auto i = 0; i != size(nums) - 1; i++) {
+    for (auto j = i + 1; j != size(nums); j++) {
       if (nums[i] + nums[j] == target) {
         return {i, j};
       }
