@@ -1,27 +1,26 @@
 #include <string>
 
-int lengthOfLongestSubstring(std::string s) {
-    auto n = s.size();
-    if (n == 0) { return 0; }
-    int begin = 0;
-    int end = 0;
-    for (int i = 0; i != n - 1; i++){
-        for (int j = i + 1; j != n; j++){
-            auto first = std::begin(s) + i;
-            auto last = std::begin(s) + j;
-            auto pos = find(first, last, s[j]);
-            if (pos != last){
-                i += pos - first;
-                break;
-            }
-            if (j - i > end - begin){
-                begin = i;
-                end = j;
-            }
-        }
+  int lengthOfLongestSubstring(std::string s) {
+    if (s.size() == 0) {
+      return 0;
     }
-    return end - begin + 1;
-}
+    auto first = begin(s);
+    auto last = begin(s);
+    for (auto i = begin(s); i != end(s) - 1; i++) {
+      for (auto j = i + 1; j != end(s); j++) {
+        auto k = find(i, j, *j);
+        if (k != j) {
+          i = k;
+          break;
+        }
+        if (j - i > last - first) {
+          first = i;
+          last = j;
+        }
+      }
+    }
+    return (int)(last - first) + 1;
+  }
 
 #include <iostream>
 int main(){
