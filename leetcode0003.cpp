@@ -1,7 +1,7 @@
 #include <string>
 
   int lengthOfLongestSubstring(std::string s) {
-    if (s.size() == 0) {
+    if (size(s) == 0) {
       return 0;
     }
     auto first = begin(s);
