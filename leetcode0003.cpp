@@ -1,6 +1,6 @@
 #include <string>
 
-  int lengthOfLongestSubstring(std::string s) {
+  size_t lengthOfLongestSubstring(std::string s) {
     if (size(s) == 0) {
       return 0;
     }
@@ -19,7 +19,7 @@
         }
       }
     }
-    return (int)(last - first) + 1;
+    return last - first + 1;
   }
 
 #include <iostream>
